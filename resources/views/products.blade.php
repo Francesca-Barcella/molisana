@@ -2,9 +2,9 @@
 
 @section('content')
 
-<h1>Products</h1>
 
 <div class="container">
+    <h1>Products</h1>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
         @forelse($products as $pasta)
         <div class="col">
