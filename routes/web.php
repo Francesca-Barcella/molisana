@@ -23,8 +23,22 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/products', function () {
-    $products = config('db.products');
-    return view('products', compact('products'));
+    $products_collection = collect(config('db.products'));
+    //dd($products);
+
+    $pasta_corta = $products_collection->where('tipo', '===', 'corta');
+    $pasta_cortissima = $products_collection->where('tipo', '===', 'cortissima');
+    $pasta_lunga = $products_collection->where('tipo', '===', 'lunga');
+
+    $data = [
+        'products' => [
+            'corta' => $pasta_corta,
+            'cortissima' => $pasta_cortissima,
+            'lunga' => $pasta_lunga
+        ]
+    ];
+
+    return view('products', $data);
 })->name('products');
 
 Route::get('/news', function () {
